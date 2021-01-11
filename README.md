@@ -27,7 +27,7 @@ nodemon
 #Main File                               
 weatherServiceApp.js
 
-#Improvements                             
+#TODO                             
 1. Refactor callbacks to Promise
 2. Make this accessible through REST APIs
 3. async await

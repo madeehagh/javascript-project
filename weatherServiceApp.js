@@ -1,6 +1,5 @@
 const geoCode = require('./util/geoCode')
 const forecast = require('./util/forecast')
-
 /*
 const url = "http://api.weatherstack.com/current?access_key=3dfaf6929face8e730f465b194aeb3af&query=25.600,77.200";
 /!*
@@ -29,14 +28,29 @@ request({url: encodeURL, json: true}, (error, response) => {
     }
 })*/
 
+ async function asyncCall() {
+         try {
+             const geoResponse = await geoCode(address);
+             const features = geoResponse.data.features[0];
+             const[latitude, longitude] = features.center;
+             const place = features.place_name;
+             const response = await forecast(latitude, longitude, place);
+             const currentData = response.data.current;
+             console.log({
+                 'temperature' : currentData.temperature,
+                 'feelsLike': currentData.feelslike,
+                 'place': place
+             });
+         } catch (error) {
+             console.log(new Error(error));
+         }
+
+ }
+
 const address = process.argv[2];
 
-if(!address) {
-    console.log("Please provide the input")
+if (!address) {
+    console.log('Please provide the input');
 } else {
-    geoCode(address, (error, data) => {
-        forecast(data.latitude, data.longitude, data.place, (error, forecastData) => {
-            console.log(forecastData);
-        })
-    })
+    asyncCall();
 }

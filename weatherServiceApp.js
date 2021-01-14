@@ -42,14 +42,14 @@ request({url: encodeURL, json: true}, (error, response) => {
                  'place': place
              });
          } catch (error) {
-             console.log(new Error(error));
+             console.log(error);
          }
 
  }
 
 const address = process.argv[2];
 
-if (!address) {
+if(!address) {
     console.log('Please provide the input');
 } else {
     asyncCall();

@@ -8,4 +8,4 @@ const forecast =  (latitude, longitude, place) => {
 
 }
 
-module.exports = forecast ;
+module.exports = forecast;

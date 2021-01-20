@@ -2,15 +2,16 @@
   "name": "weather-app",
   "version": "1.0.0",
   "description": "",
-  "main": "weatherServiceApp.js",
+  "main": "weatherService.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-service": "nodemon weatherServiceApp.js"
+    "start-service": "nodemon weatherService.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
+    "express-validator": "^6.9.2",
     "request": "^2.88.2"
   }
 }

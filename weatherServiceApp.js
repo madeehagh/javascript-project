@@ -1,56 +1,31 @@
-const geoCode = require('./util/geoCode')
-const forecast = require('./util/forecast')
-/*
-const url = "http://api.weatherstack.com/current?access_key=3dfaf6929face8e730f465b194aeb3af&query=25.600,77.200";
-/!*
-request({url: url, json : true}, (error, response) => {
-    //console.log(response.body);
-    const currentData = response.body.current;
-    console.log("It is  " + currentData.weather_descriptions)
-    console.log("Current Temperatue " + currentData.temperature);
-    console.log("Feels Like Temperatue " + currentData.feelslike);
+const express = require('express')
+const {check, validationResult} = require('express-validator/check')
 
-})*!/
+const weatherAPI = require('./weatherService')
 
-const encodeURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/los.json?access_token=pk.eyJ1IjoibWFkZWVoYWciLCJhIjoiY2tqc2N2cGsxM3lhdzJ4bzdkMms2NmpzaCJ9.qRIlgedBiGGpXHb6AYDOjQ&limit=1";
+const app = express();
 
-request({url: encodeURL, json: true}, (error, response) => {
-    if (error) {
-        console.log("Unable to connect to server");
-    } else if (response.body.message === "Not Found" || response.body.features.lemgth == 0) {
-        console.log("invalid location");
+app.listen(7070, () => {
+    console.log('server is running on port 7070.')
+});
+
+app.get('', (req, res) => {
+    res.send('Welcome to Weather Service!')
+});
+
+app.get('/weather', [
+    check('search').isLength({
+        min: 2
+    }).withMessage('Invalid Input.')
+] ,async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        res.send({status: 422,
+            errors: errors.array({
+                onlyFirstError: true
+            })});
     } else {
-        //console.log(response.body);
-        const features = response.body.features;
-        const lat = features[0].center[0];
-        const long = features[0].center[1];
-        console.log("latitude: " + lat + " longitude " + long);
+        const response = await weatherAPI(req.query.search);
+        res.send(response);
     }
-})*/
-
- async function asyncCall() {
-         try {
-             const geoResponse = await geoCode(address);
-             const features = geoResponse.data.features[0];
-             const[latitude, longitude] = features.center;
-             const place = features.place_name;
-             const response = await forecast(latitude, longitude, place);
-             const currentData = response.data.current;
-             console.log({
-                 'temperature' : currentData.temperature,
-                 'feelsLike': currentData.feelslike,
-                 'place': place
-             });
-         } catch (error) {
-             console.log(error);
-         }
-
- }
-
-const address = process.argv[2];
-
-if(!address) {
-    console.log('Please provide the input');
-} else {
-    asyncCall();
-}
+})

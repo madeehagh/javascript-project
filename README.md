@@ -9,7 +9,7 @@ More fields can be added as per need basis.
 
 #Input Format
 User is supposed to give place name in command line.         
- **node weatherServiceApp.js "amsterdam"** 
+ **node weatherServiceApp.js** 
 
 #Output Format
 `{
@@ -22,17 +22,15 @@ place: 'Amsterdam, North Holland, Netherlands'
 Import the project as node.js project in IDE
 
 #Plugins added
-nodemon
+nodemon      
+express     
+axios
 
 #Main File
 weatherServiceApp.js
 
-#Improvements
-1. Refactor callbacks to Promise
-2. Make this accessible through REST APIs
-3. async await
-
-
-
-
+#Rest API
+http://localhost:7070/weather?search=Amsterdam
+This will return current temperature, feels like and place of matching location of the given input      
+eg: API http://localhost:7070/weather?search=amst will return output of Amsterdam
 

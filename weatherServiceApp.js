@@ -1,7 +1,9 @@
 const express = require('express')
-const {check, validationResult} = require('express-validator/check')
 
+const validateRequest = require('./middleware/validateRequest')
+const apiErrorHandler = require('./error/apiErrorHandler')
 const weatherAPI = require('./weatherService')
+const apiError = require('./error/ApiError')
 
 const app = express();
 
@@ -9,23 +11,23 @@ app.listen(7070, () => {
     console.log('server is running on port 7070.')
 });
 
-app.get('', (req, res) => {
+app.use(validateRequest);
+
+app.get('', (req, res, next) => {
     res.send('Welcome to Weather Service!')
+    next();
 });
 
-app.get('/weather', [
-    check('search').isLength({
-        min: 2
-    }).withMessage('Invalid Input.')
-] ,async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        res.send({status: 422,
-            errors: errors.array({
-                onlyFirstError: true
-            })});
-    } else {
+app.get('/weather',
+    async (req, res, next) => {
+
         const response = await weatherAPI(req.query.search);
-        res.send(response);
-    }
+        if (!response.code == 200) {
+            next(apiError.serverError(response.message));
+        } else {
+            res.send(response);
+            next();
+        }
 })
+
+app.use(apiErrorHandler)

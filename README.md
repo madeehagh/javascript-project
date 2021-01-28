@@ -1,4 +1,4 @@
-#weather-app
+#weather-app                                                        
 weather-app provides an endpoint to get weather data for given location.      
 weather-app calls external apis to get weather details.
 Response should be:       
@@ -18,14 +18,14 @@ Run `npm install` to install all the dependencies.
 
 ### Environment Variables
 1.
-    a) Signup to https://mapbox.com/                       
-    b) Goto Account and create a personal token for accessing geo API 
-    c) Save the token in the environment with name **GEO_ACCESS_TOKEN**
+    a. Signup to https://mapbox.com/                       
+    b. Goto Account and create a personal token for accessing geo API 
+    c. Save the token in the environment with name **GEO_ACCESS_TOKEN**
 2.
-    a) Sign up to site https://weatherstack.com/.   
-    b) Goto current weather API under documentation       
-    c) Copy the access_key from the URL          
-    d) Paste copied access_key in environment variable with name as **FORECAST_ACCESS_KEY**
+    a. Sign up to site https://weatherstack.com/.   
+    b. Goto current weather API under documentation       
+    c. Copy the access_key from the URL          
+    d. Paste copied access_key in environment variable with the name as **FORECAST_ACCESS_KEY**
     
 
 ### Start the service
@@ -41,9 +41,9 @@ The service can be accessed by any of the below mentioned ways.
 This will return current temperature, feels like and place of matching location of the given input      
 
 ### Output
-{       
-"code": 200,                                                 
 
+{       
+"code": 200,
 "response": {   
     "currentTemperature": 24,   
     "feelsLike": 27,  
@@ -51,7 +51,7 @@ This will return current temperature, feels like and place of matching location 
     }        
 }
 
-## External Plugins added
+## Plugins added
 dotenv      
 express     
 axios

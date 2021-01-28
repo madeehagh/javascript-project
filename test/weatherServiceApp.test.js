@@ -9,16 +9,12 @@ chai.should();
 chai.use(chaiHttp);
 
 
-const dummyResponse = '{     \n' +
-    'code: 200,\n' +
-    'response: {   \n' +
-    '    currentTemperature: 24,   \n' +
-    '    feelsLike: 27,  \n' +
-    '    place: Amsterdam, North Holland, Netherlands       \n' +
-    '    }        \n' +
-    '}\n'
-
 describe('weather service test', () => {
+
+    after(function() {
+        console.log('test completed!')
+        process.exit();
+    });
 
     /**
      * Test get weather service

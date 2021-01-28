@@ -1,18 +1,12 @@
-const ApiError = require('./ApiError')
+const ApiError = require("./ApiError");
 
-const apiErrorHandler = (error, resp) => {
+const apiErrorHandler = (error, req, resp, next) => {
     if (error instanceof ApiError) {
-        resp.status(error.code).json({
-            code: error.code,
-            message: error.message,
-        });
-        return;
+        resp.status(error.code).json(error.message);
     }
-
-    resp.status(500).json({
-        code: 500,
-        message: 'something went wrong.',
-    });
+    else {
+        resp.status(500).json('something went wrong.');
+    }
 }
 
 module.exports = apiErrorHandler;

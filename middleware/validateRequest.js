@@ -9,7 +9,6 @@ const validateRequest = (req, res, next) => {
     }  else if (urlParam.get('search') === undefined || urlParam.get('search') === '') {
         next(apiError.badRequest('search value can not be empty.'));
     } else {
-        console.log("req " + req);
         next();
     }
 }

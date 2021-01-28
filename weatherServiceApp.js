@@ -15,7 +15,6 @@ app.use(validateRequest);
 
 app.get('', (req, res, next) => {
     res.send('Welcome to Weather Service!')
-    next();
 });
 
 app.get('/weather',
@@ -26,8 +25,9 @@ app.get('/weather',
             next(apiError.serverError(response.message));
         } else {
             res.send(response);
-            next();
         }
 })
 
 app.use(apiErrorHandler)
+
+module.exports = app.listen(3000);

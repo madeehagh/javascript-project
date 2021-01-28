@@ -44,7 +44,7 @@ This will return current temperature, feels like and place of matching location 
 
 {       
 "code": 200,
-"response": {   
+"data": {   
     "currentTemperature": 24,   
     "feelsLike": 27,  
     "place": "Amsterdam, North Holland, Netherlands"       

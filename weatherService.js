@@ -13,7 +13,7 @@ const weatherAPI = async (req) => {
         if (undefined !== currentData) {
             return {
                 code: 200,
-                response: {
+                data: {
                     currentTemperature: currentData.temperature,
                     feelsLike: currentData.feelslike,
                     place   //Use to display exact/matching place for the input given

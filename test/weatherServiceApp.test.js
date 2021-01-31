@@ -21,7 +21,7 @@ describe('weather service test', () => {
      */
     describe('GET /weather', async () => {
         /**
-         * Test correct
+         * Test for correct input
          */
         it('API returns valid response', (done) => {
             chai.request(server).get('/weather?search=Amsterdam')
@@ -52,6 +52,18 @@ describe('weather service test', () => {
                 .end((err, response) => {
                     response.should.have.status(400);
                     response.body.should.be.equals('search value can not be empty.');
+                    done();
+                });
+        });
+
+        /**
+         * Test if search param contains special character(possible injections)
+         */
+        it('API returns request denied error', (done) => {
+            chai.request(server).get('/weather?search=Amster%20or%20(1==1)')
+                .end((err, response) => {
+                    response.should.have.status(500);
+                    response.body.should.be.equals('Request Denied.');
                     done();
                 });
         });

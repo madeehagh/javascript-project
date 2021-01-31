@@ -1,6 +1,7 @@
 const express = require('express')
 
 const validateRequest = require('./middleware/validateRequest')
+const interceptRequest = require('./middleware/interceptor')
 const apiErrorHandler = require('./error/apiErrorHandler')
 const weatherAPI = require('./weatherService')
 const apiError = require('./error/ApiError')
@@ -12,6 +13,7 @@ app.listen(7070, () => {
 });
 
 app.use(validateRequest);
+app.use(interceptRequest);
 
 app.get('', (req, res, next) => {
     res.send('Welcome to Weather Service!')
@@ -26,7 +28,7 @@ app.get('/weather',
         } else {
             res.send(response);
         }
-})
+    })
 
 app.use(apiErrorHandler)
 

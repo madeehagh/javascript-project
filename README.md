@@ -31,14 +31,14 @@ Run `npm install` to install all the dependencies.
 ### Start the service
  npm run start
 
-
-### Run
+### Run Application
 API: http://localhost:7070/weather?search=Amsterdam
 The service can be accessed by any of the below mentioned ways.  
 1. curl http://localhost:7070/weather?search=Amsterdam      
 2. GET request from postman
 3. Hit the API on the browser.                    
 This will return current temperature, feels like and place of matching location of the given input      
+
 
 ### Output
 
@@ -51,8 +51,5 @@ This will return current temperature, feels like and place of matching location 
     }        
 }
 
-## Plugins added
-dotenv      
-express     
-axios
-
+### Run unit test cases
+npm run test

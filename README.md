@@ -1,4 +1,5 @@
-#weather-app                                                        
+
+# weather-app            
 weather-app provides an endpoint to get weather data for given location.      
 weather-app calls external apis to get weather details.
 Response should be:       
@@ -26,6 +27,7 @@ Run `npm install` to install all the dependencies.
     b. Goto current weather API under documentation       
     c. Copy the access_key from the URL          
     d. Paste copied access_key in environment variable with the name as **FORECAST_ACCESS_KEY**
+
     
 
 ### Start the service
@@ -41,7 +43,6 @@ This will return current temperature, feels like and place of matching location 
 
 
 ### Output
-
 {       
 "code": 200,
 "data": {   

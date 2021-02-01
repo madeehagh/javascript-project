@@ -15,12 +15,12 @@ app.listen(7070, () => {
 app.use(validateRequest);
 app.use(interceptRequest);
 
-app.get('', (req, res, next) => {
+app.get('', (req, res) => {
     res.send('Welcome to Weather Service!')
 });
 
 app.get('/weather',
-    async (req, res, next) => {
+    async (req, res) => {
 
         const response = await weatherAPI(req.query.search);
         if (!response.code == 200) {

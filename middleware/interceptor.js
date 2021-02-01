@@ -5,7 +5,7 @@ const interceptRequest = (req, res, next) => {
     const inputAttacks = /[-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/;
 
     if (req.query['search'].match(inputAttacks)) {
-        console.log(`A possible injection has been with search value ${req.query['search']})`)
+        console.log(`A possible injection has been with search value ${req.query['search']}`)
         next(apiError.serverError('Request Denied.'));
     } else {
         next();

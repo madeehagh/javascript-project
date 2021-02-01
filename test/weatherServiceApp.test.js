@@ -27,7 +27,6 @@ describe('weather service test', () => {
             chai.request(server).get('/weather?search=Amsterdam')
                 .end((err, response) => {
                     response.should.have.status(200);
-                    response.body.should.have.property('data').that.includes.all.keys(['currentTemperature', 'feelsLike', 'place']);
                     done();
                 });
         });

@@ -6,7 +6,7 @@ Response should be:
     `Current Temperature, 
     Feels Like Temperature, and
     Place(for which the query has been done)`                                                        
-More fields can be added as per need basis.
+There can be more than 1 place with the same name. In that case, multiple results with their respective data will be returned.  
 
 #Getting Started
 Import the project in the editor as node.js project
@@ -16,6 +16,9 @@ Import the project in the editor as node.js project
 
 ### Installing Dependencies
 Run `npm install` to install all the dependencies.
+
+### Other configuration
+In file `src/weather-app/config.json`, recordLimit states how many record the application will return
 
 ### Environment Variables
 1.
@@ -45,11 +48,11 @@ This will return current temperature, feels like and place of matching location 
 ### Output
 {       
 "code": 200,
-"data": {   
+"data": [{   
     "currentTemperature": 24,   
     "feelsLike": 27,  
     "place": "Amsterdam, North Holland, Netherlands"       
-    }        
+    }]        
 }
 
 ### Run unit test cases
